@@ -1,10 +1,8 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Mitglied  extends Model{
+public class Mitglied extends Model {
     private final int personID, kontoID;
     private final Date eintritt, austritt;
     private final int spende, kosten;
@@ -21,14 +19,13 @@ public class Mitglied  extends Model{
 
     @Override
     public String toString() {
-        return ID + " - " + personID ;
+        return ID + " - " + personID;
     }
 
 
     public int getSpende() {
         return spende;
     }
-
 
 
     public int getPersonID() {

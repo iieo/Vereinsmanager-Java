@@ -1,10 +1,8 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Konto  extends Model{
+public class Konto extends Model {
     private final int personID;
     private final String IBAN, BIC, kreditinstitut;
     private final Date unterschrift;
@@ -22,7 +20,6 @@ public class Konto  extends Model{
     public Date getUnterschrift() {
         return unterschrift;
     }
-
 
 
     public int getPersonID() {

@@ -15,7 +15,7 @@ public class MainWindow extends JFrame {
             rechnungenCatBtn, kontenCatBtn, orchesterCatBtn;
     private final JList<Object> list;
     private Kategorie anzeige;
-    private Manager manager;
+    private final Manager manager;
 
     public MainWindow(Manager manager) {
         this.manager = manager;

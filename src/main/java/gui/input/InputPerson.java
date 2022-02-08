@@ -8,8 +8,17 @@ import java.util.Date;
 
 public class InputPerson extends InputPanel {
 
-    private JTextField name, vorname, strasse, ort, email, email2, telefon, handy;
-    private JSpinner geburtsdatum, hausnummer, plz;
+    private final JTextField name;
+    private final JTextField vorname;
+    private final JTextField strasse;
+    private final JTextField ort;
+    private final JTextField email;
+    private final JTextField email2;
+    private final JTextField telefon;
+    private final JTextField handy;
+    private final JSpinner geburtsdatum;
+    private final JSpinner hausnummer;
+    private final JSpinner plz;
 
     public InputPerson(Manager manager) {
         super(manager);

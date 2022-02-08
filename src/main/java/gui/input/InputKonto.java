@@ -8,11 +8,13 @@ import models.Konto;
 import javax.swing.*;
 import java.util.Date;
 
-public class InputKonto extends InputPanel{
+public class InputKonto extends InputPanel {
 
-    private JTextField iban, bic, kreditinstitut;
-    private JSpinner unterschrift;
-    private SelectButton personId;
+    private final JTextField iban;
+    private final JTextField bic;
+    private final JTextField kreditinstitut;
+    private final JSpinner unterschrift;
+    private final SelectButton personId;
 
     public InputKonto(Manager manager) {
         super(manager);

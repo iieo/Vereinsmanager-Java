@@ -5,7 +5,7 @@ import javax.swing.*;
 public class SelectButton extends JButton {
     private int ID;
 
-    public SelectButton(String text){
+    public SelectButton(String text) {
         super(text);
     }
 

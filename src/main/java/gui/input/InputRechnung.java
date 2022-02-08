@@ -6,10 +6,16 @@ import models.Rechnung;
 import javax.swing.*;
 import java.util.Date;
 
-public class InputRechnung extends InputPanel{
+public class InputRechnung extends InputPanel {
 
-    private JTextField zweck, kategorie, bereich;
-    private JSpinner senderId, empfaengerId, menge, rechnungsdatum, bezahlDatum;
+    private final JTextField zweck;
+    private final JTextField kategorie;
+    private final JTextField bereich;
+    private final JSpinner senderId;
+    private final JSpinner empfaengerId;
+    private final JSpinner menge;
+    private final JSpinner rechnungsdatum;
+    private final JSpinner bezahlDatum;
 
 
     public InputRechnung(Manager manager) {
@@ -28,7 +34,7 @@ public class InputRechnung extends InputPanel{
 
     @Override
     public void saveToDatabase() {
-        Rechnung rechnung = new Rechnung(-1, (int)empfaengerId.getValue(), (int)senderId.getValue(), zweck.getText(), kategorie.getText(), bereich.getText(), (int)menge.getValue(), (Date)rechnungsdatum.getValue(), (Date) bezahlDatum.getValue());
+        Rechnung rechnung = new Rechnung(-1, (int) empfaengerId.getValue(), (int) senderId.getValue(), zweck.getText(), kategorie.getText(), bereich.getText(), (int) menge.getValue(), (Date) rechnungsdatum.getValue(), (Date) bezahlDatum.getValue());
         manager.getDb().addRechnung(rechnung);
     }
 

@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddWindow extends JFrame {
-    private Manager manager;
+    private final Manager manager;
 
     public AddWindow(Manager manager, Kategorie kategorie) {
         this.manager = manager;
@@ -27,7 +27,7 @@ public class AddWindow extends JFrame {
         titleLbl.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         body.add(titleLbl, BorderLayout.NORTH);
 
-        InputPanel inputPanel = switch (kategorie){
+        InputPanel inputPanel = switch (kategorie) {
             case PERSON -> new InputPerson(manager);
             case ORCHESTER -> new InputOrchester(manager);
             case KONTO -> new InputKonto(manager);
@@ -52,20 +52,28 @@ public class AddWindow extends JFrame {
         JButton applyBtn = new JButton("Anwenden");
         initMenuButton(applyBtn);
         applyBtn.setBackground(Colors.DARK_GREEN);
-        applyBtn.addActionListener((e)-> {inputPanel.saveToDatabase(); manager.getMainWindow().refresh();});
+        applyBtn.addActionListener((e) -> {
+            inputPanel.saveToDatabase();
+            manager.getMainWindow().refresh();
+        });
         footerBar.add(applyBtn);
 
         JButton submitBtn = new JButton("Speichern");
         initMenuButton(submitBtn);
         submitBtn.setBackground(Colors.LIGHT_GREEN);
-        submitBtn.addActionListener((e)-> {inputPanel.saveToDatabase(); dispose(); manager.getMainWindow().refresh();});
+        submitBtn.addActionListener((e) -> {
+            inputPanel.saveToDatabase();
+            dispose();
+            manager.getMainWindow().refresh();
+        });
         footerBar.add(submitBtn);
 
 
         add(body);
         this.setVisible(true);
     }
-    private void initMenuButton(JButton component){
+
+    private void initMenuButton(JButton component) {
         component.setBorder(BorderFactory.createLineBorder(Colors.GREEN, 1));
         component.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
         component.setPreferredSize(new Dimension(150, 30));

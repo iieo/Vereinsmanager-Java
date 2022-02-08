@@ -12,8 +12,8 @@ import java.util.List;
 
 public class Database {
     private Connection connection;
-    private String dataBasePath;
-    private Manager manager;
+    private final String dataBasePath;
+    private final Manager manager;
 
     public Database(String dataBasePath, Manager manager) {
         this.manager = manager;
@@ -87,13 +87,14 @@ public class Database {
         return rs;
     }
 
-    public void reloadAll(){
+    public void reloadAll() {
         reloadKonten();
         reloadPersonen();
         reloadRechnungen();
         reloadMitglieder();
         reloadOrchester();
     }
+
     public void reloadPersonen() {
         manager.getController().clearLoadedPersonen();
         ResultSet rs = executeQuery(SQLDefault.GET_PERSONEN);
@@ -111,7 +112,7 @@ public class Database {
                 String email2 = rs.getString("EMAIL2");
                 String telefon = rs.getString("TELEFON");
                 String handy = rs.getString("HANDY");
-                Person person = new Person(ID, name, vorname, strasse,hausnummer, plz, ort, geburtsdatum, email, email2,
+                Person person = new Person(ID, name, vorname, strasse, hausnummer, plz, ort, geburtsdatum, email, email2,
                         telefon, handy);
                 manager.getController().addPerson(person);
             }
@@ -120,6 +121,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public void reloadMitglieder() {
         manager.getController().clearLoadedMitglieder();
         ResultSet rs = executeQuery(SQLDefault.GET_MITGLIEDER);
@@ -140,6 +142,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
     public void reloadOrchester() {
         manager.getController().clearLoadedOrchesterMitglieder();
         List<Orchester> orchesters = new ArrayList<>();
@@ -207,44 +210,44 @@ public class Database {
     }
 
 
-    public boolean addPerson(Person person){
-        String sqlStatement = SQLDefault.INSERT_PERSON +"'"+
-                person.getName() + "', '" + person.getVorname() +"', '"+ person.getStrasse() + "', " + person.getHausnummer() + ", " + person.getPlz()
+    public boolean addPerson(Person person) {
+        String sqlStatement = SQLDefault.INSERT_PERSON + "'" +
+                person.getName() + "', '" + person.getVorname() + "', '" + person.getStrasse() + "', " + person.getHausnummer() + ", " + person.getPlz()
                 + ", '" + person.getOrt() + "', " + getDateFormat(person.getGeburtsdatum()) + ", '"
-                + person.getEmail() + "', '" + person.getEmail2() + "', '" + person.getTelefon() + "', '" + person.getHandy()+ "')";
+                + person.getEmail() + "', '" + person.getEmail2() + "', '" + person.getTelefon() + "', '" + person.getHandy() + "')";
         return executeStatement(sqlStatement);
     }
 
 
-    public boolean addRechnung(Rechnung r){
-        String sqlStatement = SQLDefault.INSERT_RECHNUNG +"'"+
-                r.getEmpfaengerID() + "', '" + r.getSenderID() + "', '"+ r.getZweck() + "', '" + r.getKategorie() + "', '"
+    public boolean addRechnung(Rechnung r) {
+        String sqlStatement = SQLDefault.INSERT_RECHNUNG + "'" +
+                r.getEmpfaengerID() + "', '" + r.getSenderID() + "', '" + r.getZweck() + "', '" + r.getKategorie() + "', '"
                 + r.getBereich() + "', " + r.getMenge() + ", " + getDateFormat(r.getRechnungsdatum()) + ", " + getDateFormat(r.getBezahlt()) + ");";
         return executeStatement(sqlStatement);
     }
 
-    public boolean addKonto(Konto k){
+    public boolean addKonto(Konto k) {
         String sqlStatement = SQLDefault.INSERT_KONTO + k.getPersonID() + ", '" + k.getIBAN() + "', '" + k.getBIC() + "', '" + k.getKreditinstitut() + "', "
                 + getDateFormat(k.getUnterschrift()) + ")";
         return executeStatement(sqlStatement);
     }
 
-    public boolean addOrchester(Orchester o){
-        String sqlStatement = SQLDefault.INSERT_ORCHESTER+ o.getPersonID()  + ", " + o.getMitgliedID() + ", '" + o.getInstrument() + "', '" + o.getOrchestertyp() + "', " + o.getKosten()+ ")";
+    public boolean addOrchester(Orchester o) {
+        String sqlStatement = SQLDefault.INSERT_ORCHESTER + o.getPersonID() + ", " + o.getMitgliedID() + ", '" + o.getInstrument() + "', '" + o.getOrchestertyp() + "', " + o.getKosten() + ")";
         return executeStatement(sqlStatement);
     }
 
-    public boolean addMitglied(Mitglied m){
-        String sqlStatement = SQLDefault.INSERT_MITGLIED  + ", " + m.getPersonID()  + ", " + m.getKontoID()  + ", " + getDateFormat(m.getEintritt())  + ", " + getDateFormat(m.getAustritt())
+    public boolean addMitglied(Mitglied m) {
+        String sqlStatement = SQLDefault.INSERT_MITGLIED + ", " + m.getPersonID() + ", " + m.getKontoID() + ", " + getDateFormat(m.getEintritt()) + ", " + getDateFormat(m.getAustritt())
                 + ", " + m.getSpende() + ", " + m.getKosten() + ")";
         return executeStatement(sqlStatement);
     }
 
-    private String getDateFormat(Date date){
+    private String getDateFormat(Date date) {
         return date == null ? null : String.valueOf(date.getTime());
     }
 
-    public void close(){
+    public void close() {
         try {
             connection.close();
         } catch (SQLException e) {

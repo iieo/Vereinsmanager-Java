@@ -1,10 +1,8 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Rechnung extends Model{
+public class Rechnung extends Model {
     private final int empfaengerID, senderID;
     private final String zweck, kategorie, bereich;
     private final int menge;
@@ -24,7 +22,6 @@ public class Rechnung extends Model{
         this.bezahlt = bezahlt;
 
     }
-
 
 
     @Override

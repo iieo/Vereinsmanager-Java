@@ -2,7 +2,7 @@ package models;
 
 import java.util.Date;
 
-public class Person extends Model{
+public class Person extends Model {
     private final String name, vorname, strasse;
     private final int hausnummer, plz;
     private final String ort;

@@ -1,9 +1,6 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Orchester extends Model{
+public class Orchester extends Model {
     private final int personID;
     private final int mitgliedID;
     private final String instrument;
@@ -20,9 +17,10 @@ public class Orchester extends Model{
         this.kosten = kosten;
 
     }
+
     @Override
     public String toString() {
-        return ID + " - " + personID ;
+        return ID + " - " + personID;
     }
 
     public int getPersonID() {

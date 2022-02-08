@@ -5,10 +5,13 @@ import models.Orchester;
 
 import javax.swing.*;
 
-public class InputOrchester extends InputPanel{
+public class InputOrchester extends InputPanel {
 
-    private JTextField instrument, orchestertyp;
-    private JSpinner personID, mitgliedID, kosten;
+    private final JTextField instrument;
+    private final JTextField orchestertyp;
+    private final JSpinner personID;
+    private final JSpinner mitgliedID;
+    private final JSpinner kosten;
 
 
     public InputOrchester(Manager manager) {
@@ -23,7 +26,7 @@ public class InputOrchester extends InputPanel{
 
     @Override
     public void saveToDatabase() {
-        Orchester orchester = new Orchester(-1, (int)personID.getValue(), (int)mitgliedID.getValue(), instrument.getText(), orchestertyp.getText(), (int)kosten.getValue());
+        Orchester orchester = new Orchester(-1, (int) personID.getValue(), (int) mitgliedID.getValue(), instrument.getText(), orchestertyp.getText(), (int) kosten.getValue());
         manager.getDb().addOrchester(orchester);
     }
 }

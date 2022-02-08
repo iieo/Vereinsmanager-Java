@@ -8,7 +8,12 @@ import java.util.Date;
 
 public class InputMitglied extends InputPanel {
 
-    private JSpinner personId, kontoId, eintrittsdatum, austrittsdatum, spende, kosten;
+    private final JSpinner personId;
+    private final JSpinner kontoId;
+    private final JSpinner eintrittsdatum;
+    private final JSpinner austrittsdatum;
+    private final JSpinner spende;
+    private final JSpinner kosten;
 
 
     public InputMitglied(Manager manager) {
