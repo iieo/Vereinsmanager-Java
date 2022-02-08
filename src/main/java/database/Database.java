@@ -1,5 +1,6 @@
 package database;
 
+import main.Manager;
 import models.*;
 
 import java.io.File;
@@ -12,10 +13,10 @@ import java.util.List;
 public class Database {
     private Connection connection;
     private String dataBasePath;
-    private DataController controller;
+    private Manager manager;
 
-    public Database(String dataBasePath, DataController controller) {
-        this.controller = controller;
+    public Database(String dataBasePath, Manager manager) {
+        this.manager = manager;
         this.dataBasePath = dataBasePath;
         boolean fileCreated = createFile();
 
@@ -94,7 +95,7 @@ public class Database {
         reloadOrchester();
     }
     public void reloadPersonen() {
-        controller.clearLoadedPersonen();
+        manager.getController().clearLoadedPersonen();
         ResultSet rs = executeQuery(SQLDefault.GET_PERSONEN);
         try {
             while (rs.next()) {
@@ -112,7 +113,7 @@ public class Database {
                 String handy = rs.getString("HANDY");
                 Person person = new Person(ID, name, vorname, strasse,hausnummer, plz, ort, geburtsdatum, email, email2,
                         telefon, handy);
-                controller.addPerson(person);
+                manager.getController().addPerson(person);
             }
             rs.close();
         } catch (SQLException e) {
@@ -120,7 +121,7 @@ public class Database {
         }
     }
     public void reloadMitglieder() {
-        controller.clearLoadedMitglieder();
+        manager.getController().clearLoadedMitglieder();
         ResultSet rs = executeQuery(SQLDefault.GET_MITGLIEDER);
         try {
             while (rs.next()) {
@@ -132,7 +133,7 @@ public class Database {
                 int spende = rs.getInt("SPENDE");
                 int kosten = rs.getInt("KOSTEN");
                 Mitglied mitglied = new Mitglied(ID, personid, kontoid, eintritt, austritt, spende, kosten);
-                controller.addMitlgied(mitglied);
+                manager.getController().addMitlgied(mitglied);
             }
             rs.close();
         } catch (SQLException e) {
@@ -140,7 +141,7 @@ public class Database {
         }
     }
     public void reloadOrchester() {
-        controller.clearLoadedOrchesterMitglieder();
+        manager.getController().clearLoadedOrchesterMitglieder();
         List<Orchester> orchesters = new ArrayList<>();
         ResultSet rs = executeQuery(SQLDefault.GET_ORCHESTER);
         try {
@@ -152,7 +153,7 @@ public class Database {
                 String orchestertyp = rs.getString("ORCHESTERTYP");
                 int kosten = rs.getInt("KOSTEN");
                 Orchester orchester = new Orchester(ID, personID, mitgliedID, instrument, orchestertyp, kosten);
-                controller.addOrchester(orchester);
+                manager.getController().addOrchester(orchester);
             }
             rs.close();
         } catch (SQLException e) {
@@ -161,7 +162,7 @@ public class Database {
     }
 
     public void reloadRechnungen() {
-        controller.clearLoadedRechnungen();
+        manager.getController().clearLoadedRechnungen();
         ResultSet rs = executeQuery(SQLDefault.GET_RECHNUNGEN);
         try {
             while (rs.next()) {
@@ -176,7 +177,7 @@ public class Database {
                 Date bezahlt = rs.getDate("BAZAHLT");
                 Rechnung rechnung = new Rechnung(ID, empfaengerid, senderid, zweck, kategorie, bereich,
                         menge, rechnungsdatum, bezahlt);
-                controller.addRechnung(rechnung);
+                manager.getController().addRechnung(rechnung);
             }
             rs.close();
         } catch (SQLException e) {
@@ -185,7 +186,7 @@ public class Database {
     }
 
     public void reloadKonten() {
-        controller.clearLoadedKonten();
+        manager.getController().clearLoadedKonten();
         ResultSet rs = executeQuery(SQLDefault.GET_KONTEN);
         try {
             while (rs.next()) {
@@ -197,7 +198,7 @@ public class Database {
                 Date unterschrift = rs.getDate("UNTERSCHRIFT");
 
                 Konto konto = new Konto(ID, personid, iban, bic, kreditinstitut, unterschrift);
-                controller.addKonto(konto);
+                manager.getController().addKonto(konto);
             }
             rs.close();
         } catch (SQLException e) {
