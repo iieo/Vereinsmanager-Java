@@ -17,36 +17,36 @@ public class SQLDefault {
             "HANDY TINYTEXT)";
     public static String CREATE_MITGLIEDER_TABLE = "CREATE TABLE mitglieder\n" +
             "(MITGLIEDID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "PERSONID INTEGER,\n" +
-            "KONTOID INTEGER,\n" +
-            "EINTRITT DATE,\n" +
-            "AUSTRITT DATE,\n" +
-            "SPENDE TINYINT,\n" +
-            "KOSTEN TINYINT)";
+            "PERSONID INTEGER,\n"+
+            "KONTOID INTEGER,\n"+
+            "EINTRITT DATE,\n"+
+            "AUSTRITT DATE,\n"+
+            "SPENDE TINYINT,\n"+
+            "KOSTEN TINYINT)" ;
     public static String CREATE_ORCHESTER_TABLE = "CREATE TABLE orchester\n" +
             "(ORCHESTERID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "PERSONID INTEGER,\n" +
-            "MITGLIEDID INTEGER,\n" +
+            "PERSONID INTEGER,\n"+
+            "MITGLIEDID INTEGER,\n"+
             "INSTRUMENT TINYTEXT,\n" +
             "ORCHESTERTYP TINYTEXT,\n" +
-            "KOSTEN TINYINT)";
+            "KOSTEN TINYINT)" ;
     public static String CREATE_KONTEN_TABLE = "CREATE TABLE konten\n" +
             "(KONTOID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "PERSONID INTEGER,\n" +
-            "IBAN TINYTEXT,\n" +
+            "PERSONID INTEGER,\n"+
+            "IBAN TINYTEXT,\n"+
             "BIC TINYTEXT,\n" +
             "KREDITINSTITUT TINYTEXT," +
-            "UNTERSCHRIFT DATE)";
+            "UNTERSCHRIFT DATE)" ;
     public static String CREATE_RECHNUNGEN_TABLE = "CREATE TABLE rechnungen\n" +
             "(RECHNUNGID INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "EMPFAENGERID INTEGER,\n" +
-            "SENDERID INTEGER,\n" +
-            "ZWECK TEXT,\n" +
-            "KATEGORIE TINYTEXT,\n" +
-            "BEREICH TINYTEXT,\n" +
+            "EMPFAENGERID INTEGER,\n"+
+            "SENDERID INTEGER,\n"+
+            "ZWECK TEXT,\n"+
+            "KATEGORIE TINYTEXT,\n"+
+            "BEREICH TINYTEXT,\n"+
             "MENGE INTEGER,\n" +
             "RECHNUNGSDATUM DATE,\n" +
-            "BEZAHLT DATE)";
+            "BEZAHLT DATE)" ;
 
     public static String GET_MITGLIEDER = "SELECT * FROM mitglieder";
     public static String GET_KONTEN = "SELECT * FROM konten";
